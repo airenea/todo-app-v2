@@ -1,33 +1,23 @@
-<p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag 'allcat.css' %>
 
-<h1>Categories</h1>
+<div class="gen-container">
+<div class="gen-container-header">
+  <div class="gen-container-header-item">📋<div class="header-item-name"><a href="/tasks">Daily Quests</a></div></div>
+  <div class="gen-container-header-activeitem">📂<div class="header-item-name"><a href="/categories">Inventory</a></div></div>
+  <div class="gen-container-header-item">📝<div class="header-item-name""><a href="/tasks/new">New Quest</a></div></div>
+  <div class="gen-container-header-item">📦<div class="header-item-name"><a href="/categories/new">New Category</a></div></div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>User</th>
-      <th>Emoji</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="categoryindex">
+<div class="categoryindex-all">
+  <% @categories.each do |category| %>
+    <div class="categoryindex-cat">
+    <div class="categoryindex-cat-emoji"><%= category.emoji %></div>
+    <div class="categoryindex-cat-title"><strong><%= link_to category.title.upcase, category %></strong> (x<%= @tasks.where(category_id: category.id).where(completion: false).count%>)</div>
+    <div class="categoryindex-cat-opts"><%= link_to '🔍', category %> <%= link_to '🖊', edit_category_path(category) %> <%= link_to '🗑', category, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+    </div>
+  <% end %>
+</div>
 
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.title %></td>
-        <td><%= category.body %></td>
-        <td><%= category.user %></td>
-        <td><%= category.emoji %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Category', new_category_path %>
+</div>
+</div>

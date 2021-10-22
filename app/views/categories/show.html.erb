@@ -1,23 +1,51 @@
+<%= stylesheet_link_tag 'indivcat.css' %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @category.title %>
-</p>
+<div class="gen-container">
+<div class="gen-container-header">
+  <div class="gen-container-header-item">📋<div class="header-item-name"><a href="/tasks">Daily Quests</a></div></div>
+  <div class="gen-container-header-activeitem">📂<div class="header-item-name"><a href="/categories">Inventory</a></div></div>
+  <div class="gen-container-header-item">📝<div class="header-item-name""><a href="/tasks/new">New Quest</a></div></div>
+  <div class="gen-container-header-item">📦<div class="header-item-name"><a href="/categories/new">New Category</a></div></div>
+</div>
 
-<p>
-  <strong>Body:</strong>
-  <%= @category.body %>
-</p>
+<div class="categories">
+<div class="catindex">
+  <% @categories.each do |category| %>
+    <div class="categoryindex-cat">
+    <div class="categoryindex-cat-emoji"><%= link_to category.emoji, category %></div>
+    <div class="categoryindex-cat-opts"><%= link_to '🖊', edit_category_path(category) %> <%= link_to '🗑', category, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+    </div>
+  <% end %>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @category.user %>
-</p>
+<div class="catindiv">
+<div class="catindiv-title"><%= @category.title.downcase %> <%= @category.emoji %></div>
+<div class="catindiv-body"><%=simple_format(@category.body).html_safe %></div>
+<div class="catindiv-tasks">
+  <% @tasks.each do |task| %>
+  <% 
+    check = '⭕️'
+    text_color = '#6b2b44';
+    text_decor = 'none';
+    if task.completion == true
+      check = '✅'
+      text_color = '#553F47'
+      text_decor = 'line-through';
+    else
+    end
+  %>
+    <div class="taskindex-today-task">
+    <div class="taskindex-today-taskname"><%= check %> <strong><span style="color: <%=text_color%>; text-decoration: <%=text_decor%>;"><%= task.title.upcase %></span></strong> <%= task.date %></div>
+    <div class="taskindex-today-taskopt"><%= link_to '🔍', task %> <%= link_to '🖊', edit_task_path(task) %> <%= link_to '🗑', task, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+    </div>
+  <% end %>
+</div>
+<div class="form-button-align">
+<div class="form-button-make"><%= link_to 'Edit', edit_category_path(@category) %></div>
+<div class="form-button-make"><%= link_to 'Back', categories_path %></div>
+</div>
+</div>
 
-<p>
-  <strong>Emoji:</strong>
-  <%= @category.emoji %>
-</p>
+</div>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+</div>

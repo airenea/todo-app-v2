@@ -1,6 +1,12 @@
-<h1>Editing Category</h1>
+<%= stylesheet_link_tag 'form.css' %>
+<div class="gen-container">
+<div class="gen-container-header">
+  <div class="gen-container-header-item">📋<div class="header-item-name"><a href="/tasks">Daily Quests</a></div></div>
+  <div class="gen-container-header-item">📂<div class="header-item-name"><a href="/categories">Inventory</a></div></div>
+  <div class="gen-container-header-item">📝<div class="header-item-name""><a href="/tasks/new">New Quest</a></div></div>
+  <div class="gen-container-header-activeitem">📦<div class="header-item-name"><a href="/categories/new">New Category</a></div></div>
+</div>
+
+<div class="form-title">Edit Inventory</div>
 
 <%= render 'form', category: @category %>
-
-<%= link_to 'Show', @category %> |
-<%= link_to 'Back', categories_path %>
