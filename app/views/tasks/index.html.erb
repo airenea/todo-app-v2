@@ -1,37 +1,93 @@
-<p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag 'alltask.css' %>
 
-<h1>Tasks</h1>
+<%
+arr_quote = [
+  "Change the world by being yourself.",
+  "Everything you can imagine is real.",
+  "Whatever you do, do it well.",
+  "What we think, we become.",
+  "All limitations are self-imposed.",
+  "Tough times never last but tough people do.",
+  "Be so good they can’t ignore you.",
+  "Yesterday you said tomorrow.",
+  "To live will be an awfully big adventure.",
+  "And still, I rise.",
+  "Turn your wounds into wisdom.",
+  "It hurt because it mattered.",
+  "The meaning of life is to give life meaning.",
+  "I have nothing to lose but something to gain."
+]
+%>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Completion</th>
-      <th>User</th>
-      <th>Category</th>
-      <th>Date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="gen-container">
+<div class="gen-container-header">
+  <div class="gen-container-header-activeitem">📋<div class="header-item-name"><a href="/tasks">Daily Quests</a></div></div>
+  <div class="gen-container-header-item">📂<div class="header-item-name"><a href="/categories">Inventory</a></div></div>
+  <div class="gen-container-header-item">📝<div class="header-item-name""><a href="/tasks/new">New Quest</a></div></div>
+  <div class="gen-container-header-item">📦<div class="header-item-name"><a href="/categories/new">New Category</a></div></div>
+</div>
 
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.title %></td>
-        <td><%= task.body %></td>
-        <td><%= task.completion %></td>
-        <td><%= task.user %></td>
-        <td><%= task.category_id %></td>
-        <td><%= task.date %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%
+today_done = @tasks_today.where(completion: true).count.to_f
+today_total = @tasks_today.count.to_f
+today_fraction = today_done/today_total
+today_progress = (number_with_precision(today_fraction, :precision => 6).to_f*15)
+today_progressleft = today_progress.to_s + 'vw'
+today_progressright = (15 - today_progress).to_s + 'vw'
+percent_done = today_fraction * 100
+congrats = (number_with_precision(percent_done, :precision => 2)).to_s + '%' + ' (' + today_done.to_s + ' out of ' + today_total.to_s + ')'
+if today_progress == 15
+  congrats = 'LEVEL COMPLETE!'
+else
+end
+%>
+<div class="taskindex">
+<div class="taskindex-welcome">
+  <div class="taskindex-welcome-date"><%= Date.today%><div style="width: <%=today_progressleft%>;" class="taskindex-welcome-barleft"></div><div style="width: <%=today_progressright%>;" class="taskindex-welcome-barright"></div><div class="taskindex-welcome-congrats"><%= congrats%></div></div>
+  <div class="taskindex-welcome-quote"><%= arr_quote[rand(arr_quote.length-1)].downcase%></div>
+</div>
 
-<br>
+<div class="taskindex-today">
+  <% @tasks_today.each do |task| %>
+  <% 
+    check = '⭕️'
+    text_color = '#CD2767';
+    text_decor = 'none';
+    if task.completion == true
+      check = '✅'
+      text_color = '#553F47'
+      text_decor = 'line-through';
+    else
+    end
+  %>
+    <div class="taskindex-today-task">
+    <div class="taskindex-today-taskname"><%= check %> <%= @categories.find(task.category_id).emoji %> <strong><span style="color: <%=text_color%>; text-decoration: <%=text_decor%>;"><%= task.title.upcase %></span></strong></div>
+    <div class="taskindex-today-taskopt"><%= link_to '🔍', task %> <%= link_to '🖊', edit_task_path(task) %> <%= link_to '🗑', task, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+    </div>
+  <% end %>
+</div>
 
-<%= link_to 'New Task', new_task_path %>
+<div class="taskindex-other">
+<div class="taskindex-list">
+  <% @tasks_future.each do |task| %>
+  <% 
+    check = '⭕️'
+    text_color = '#6b2b44';
+    text_decor = 'none';
+    if task.completion == true
+      check = '✅'
+      text_color = '#553F47'
+      text_decor = 'line-through';
+    else
+    end
+  %>
+    <div class="taskindex-other-task">
+    <div class="taskindex-other-taskname"><%= @categories.find(task.category_id).emoji %> <strong><span style="color: <%=text_color%>; text-decoration: <%=text_decor%>;"><%= task.title.upcase %></span></strong> <%= task.date %></div>
+    <div class="taskindex-other-taskopt"><%= link_to '🔍', task %></div>
+    </div>
+  <% end %>
+</div>
+<div class="taskindex-other-header">Upcoming</div>
+</div>
+</div>
+</div>

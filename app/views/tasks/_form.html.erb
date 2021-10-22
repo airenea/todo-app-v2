@@ -1,47 +1,54 @@
+<div class="form-container">
+<div class="form-form">
 <%= form_with(model: task) do |form| %>
   <% if task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
-
+    <div class="form-alert-error"><div style="font-family: 'Nova Mono'; padding: 3%;'">Sorry!</div>
       <ul>
         <% task.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
-    </div>
+      <div style="font-family: 'Nova Mono'; padding: 3%;">Try again!</div>
+    </div> 
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="form-field">
+    <div class="form-param"><%= form.label :title %></div>
+    <div class="form-input"><%= form.text_field :title %></div>
   </div>
 
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
+  <div class="form-field">
+    <div class="form-param"><%= form.label :body %></div>
+    <div class="form-input"><%= form.text_area :body %></div>
   </div>
 
-  <div class="field">
-    <%= form.label :completion %>
-    <%= form.check_box :completion %>
+  <div class="form-field">
+    <div class="form-param"><%= form.label :completion %></div>
+    <div class="form-input"><%= form.check_box :completion %></div>
   </div>
 
-  <div class="field">
-    <%= form.label :user %>
-    <%= form.number_field :user %>
+  <div class="form-field">
+    <div class="form-param"><%= form.label :category_id %></div>
+    <div class="form-input"><%= form.select :category_id, Category.all.where(user: current_user.id).collect {|p| [ p.title, p.id ] }, { :include_blank => "Please select" } %></div>
   </div>
 
-  <div class="field">
-    <%= form.label :category_id %>
-    <%= form.number_field :category_id %>
+  <div class="form-field">
+    <div class="form-param"><%= form.label :date %></div>
+    <div class="form-input"><%= form.date_select :date %></div>
   </div>
 
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.date_select :date %>
+  <div class="form-field">
+  <div class="form-param"><%= form.number_field :user, id: :user_id, class:"form-control", value: current_user.id, type: :hidden %></div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-button-align">
+  <div class="form-button">
+    <%= form.submit "SUBMIT" %>
+  </div>
+  <div class="form-button-make">
+    <a href="/tasks">GO BACK</a>
   </div>
 <% end %>
+</div>
+</div>
+

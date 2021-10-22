@@ -1,33 +1,98 @@
 
-<p>
-  <strong>Title:</strong>
-  <%= @task.title %>
-</p>
+<%= stylesheet_link_tag 'alltask.css' %>
+<%= stylesheet_link_tag 'indivtask.css' %>
 
-<p>
-  <strong>Body:</strong>
-  <%= @task.body %>
-</p>
+<%
+arr_quote = [
+  "Change the world by being yourself.",
+  "Everything you can imagine is real.",
+  "Whatever you do, do it well.",
+  "What we think, we become.",
+  "All limitations are self-imposed.",
+  "Tough times never last but tough people do.",
+  "Be so good they can’t ignore you.",
+  "Yesterday you said tomorrow.",
+  "To live will be an awfully big adventure.",
+  "And still, I rise.",
+  "Turn your wounds into wisdom.",
+  "It hurt because it mattered.",
+  "The meaning of life is to give life meaning.",
+  "I have nothing to lose but something to gain."
+]
+%>
 
-<p>
-  <strong>Completion:</strong>
-  <%= @task.completion %>
-</p>
+<div class="gen-container">
+<div class="gen-container-header">
+  <div class="gen-container-header-activeitem">📋<div class="header-item-name"><a href="/tasks">Daily Quests</a></div></div>
+  <div class="gen-container-header-item">📂<div class="header-item-name"><a href="/categories">Inventory</a></div></div>
+  <div class="gen-container-header-item">📝<div class="header-item-name""><a href="/tasks/new">New Quest</a></div></div>
+  <div class="gen-container-header-item">📦<div class="header-item-name"><a href="/categories/new">New Category</a></div></div>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @task.user %>
-</p>
+<%
+congrats = 'IN PROGRESS!'
+today_done = @tasks_today.where(completion: true).count.to_f
+today_total = @tasks_today.count.to_f
+today_fraction = today_done/today_total
+today_progress = (number_with_precision(today_fraction, :precision => 6).to_f*15)
+today_progressleft = today_progress.to_s + 'vw'
+today_progressright = (15 - today_progress).to_s + 'vw'
+if today_progress == 15
+  congrats = 'LEVEL COMPLETE!'
+else
+end
+%>
 
-<p>
-  <strong>Category:</strong>
-  <%= @task.category_id %>
-</p>
+<div class="taskindex">
+<div class="taskindex-welcome">
+<div class="taskindex-welcome-date"><%= Date.today%><div style="width: <%=today_progressleft%>;" class="taskindex-welcome-barleft"></div><div style="width: <%=today_progressright%>;" class="taskindex-welcome-barright"></div><div class="taskindex-welcome-congrats"><%= congrats%></div></div>
+<div class="taskindex-welcome-quote"><%= arr_quote[rand(arr_quote.length-1)].downcase%></div>
+</div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @task.date %>
-</p>
+<div class="taskindex-today">
+  <% @tasks_today.each do |task| %>
+  <% 
+    check = '⭕️'
+    text_color = '#6b2b44';
+    text_decor = 'none';
+    if task.completion == true
+      check = '✅'
+      text_color = '#553F47'
+      text_decor = 'line-through';
+    else
+    end
+  %>
+    <div class="taskindex-today-task">
+    <div class="taskindex-today-taskname"><%= check %> <%= @categories.find(task.category_id).emoji %> <strong><span style="color: <%=text_color%>; text-decoration: <%=text_decor%>;"><%= task.title.upcase %></span></strong></div>
+    <div class="taskindex-today-taskopt"><%= link_to '🔍', task %> <%= link_to '🖊', edit_task_path(task) %> <%= link_to '🗑', task, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+    </div>
+  <% end %>
+</div>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<div class="taskindex-other">
+  <% 
+    check = '⭕️'
+    text_color = '#6b2b44';
+    text_decor = 'none';
+    if @task.completion == true
+      check = '✅'
+      text_color = '#553F47'
+      text_decor = 'line-through';
+    else
+    end
+  %>
+    <div class="taskindex-other-task">
+    <div class="taskindiv">
+    <div class="taskindiv-header">
+    <div class="taskindiv-date"><%= @task.date %></div>
+    <div class="taskindiv-title"><%= check %>  <%= @task.title.downcase %></div>
+    <div class="taskindiv-category"><%= @categories.find(@task.category_id).title %> <%= @categories.find(@task.category_id).emoji %><%= @categories.find(@task.category_id).emoji %><%= @categories.find(@task.category_id).emoji %></div>
+    </div>
+    <div class="taskindiv-body"><%=simple_format(@task.body).html_safe %></div>
+    <div class="taskindiv-opts"><%= link_to '🖊', edit_task_path(@task) %> <%= link_to '🗑', @task, method: :delete, data: { confirm: 'Are you sure?' } %> <%= link_to '🔙', tasks_path %></div>
+    </div>
+    </div>
+</div>
+</div>
+</div>
+
