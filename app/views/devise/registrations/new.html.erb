@@ -1,0 +1,42 @@
+<%= stylesheet_link_tag 'sign.css' %>
+
+<div class="sign-container">
+<div class="sign-title">New Game</div>
+<div class="sign-form">
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="sign-field">
+    <div class="sign-param"><%= f.label :name %></div>
+    <div class="sign-input"><%= f.text_field :name %></div>
+    </div>
+
+    <div class="sign-field">
+    <div class="sign-param"><%= f.label :surname %></div>
+    <div class="sign-input"><%= f.text_field :surname %></div>
+    </div>
+
+    <div class="sign-field">
+    <div class="sign-param"><%= f.label :email %></div>
+    <div class="sign-input"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
+    </div>
+
+    <div class="sign-field">
+    <div class="sign-param"><%= f.label :password %></div>
+    <% if @minimum_password_length %>
+    <% end %><br />
+    <div class="sign-input"><%= f.password_field :password, autocomplete: "new-password" %></div>
+    </div>
+
+    <div class="sign-field">
+    <div class="sign-param"><%= f.label :password_confirmation %><br /></div>
+    <div class="sign-input"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></div>
+    </div>
+
+    <div class="sign-button-align">
+    <div class="sign-button">
+      <%= f.submit "SIGN UP" %>
+    </div>
+    </div>
+  <% end %>
+</div>
+</div>

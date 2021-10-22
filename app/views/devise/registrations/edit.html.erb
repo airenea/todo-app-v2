@@ -1,0 +1,58 @@
+<%= stylesheet_link_tag 'sign.css' %>
+<div class="sign-container">
+<div class="sign-title">UPDATE PLAYER</div>
+<div class="sign-form">
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="sign-field">
+  <div class="sign-param"><%= f.label :name %></div>
+  <div class="sign-input"><%= f.text_field :name %></div>
+  </div>
+
+  <div class="sign-field">
+  <div class="sign-param"><%= f.label :surname %></div>
+  <div class="sign-input"><%= f.text_field :surname %></div>
+  </div>
+
+  <div class="sign-field">
+    <div class="sign-param"><%= f.label :email %><br /></div>
+    <div class="sign-input"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="sign-field">
+    <div class="sign-param"><%= f.label :password %> <i>(<%= @minimum_password_length %> CHARS)</em></i><br /></div>
+    <div class="sign-input"><%= f.password_field :password, autocomplete: "new-password" %></div>
+  </div>
+
+  <div class="sign-field">
+    <div class="sign-param"><%= f.label :password_confirmation %><br /></div>
+    <div class="sign-input"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></div>
+  </div>
+
+  <div class="sign-field">
+    <div class="sign-param"><%= f.label :current_password %></div>
+    <div class="sign-input"><%= f.password_field :current_password, autocomplete: "current-password" %></div>
+  </div>
+
+  <div class="sign-button-align">
+  <div class="sign-button">
+    <%= f.submit "UPDATE" %>
+  </div>
+  <div class="sign-button-make">
+  <%= link_to "DELETE ACC", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+  </div>
+  <div class="sign-button-make">
+  <%= link_to "BACK", :back %>
+  </div>
+  </div>
+
+<% end %>
+</div>
+</div>
+</div>
