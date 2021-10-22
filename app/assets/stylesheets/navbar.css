@@ -1,0 +1,111 @@
+.navbar-gen {
+    position: fixed;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    width: 100%;
+    z-index:2;
+    padding: 3px;
+    margin-left: -10px;
+    margin-top: -10px;
+    height: 60px;
+    font-family: 'Inconsolata';
+    overflow: hidden;
+    background: linear-gradient(-45deg, #2d1a2a, #6b2b44, #bc4863, #efab9d);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+.navbar-sign {
+    position: fixed;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    width: 100%;
+    z-index:2;
+    padding: 3px;
+    margin-left: -10px;
+    margin-top: -10px;
+    height: 60px;
+    font-family: 'Inconsolata';
+    overflow: hidden;
+    background: linear-gradient(-45deg, #682f72, #88347c, #372666, #be438d);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+    text-align: center;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.navbar-under {
+    height: 60px;
+}
+
+.navbar-title {
+    font-family: 'Major Mono Display';
+    font-size: 4.5vmin;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.navbar-user {
+    font-family: 'Nova Mono';
+    font-size: 2.5vmin;
+    text-align: center;
+    color: #FFFFFF;
+    margin-right: 3%;
+}
+
+.navbar-user a:link {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.navbar-user a:visited {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.navbar-user a:hover {
+    color: #E8EDF6;
+    text-decoration: none;
+    text-shadow: 2px 2px 5px #efab9d;
+    font-weight: 800;
+}
+
+
+.navbar-item {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #FFFFFF;
+    transition: 0.2s;
+}
+
+.navbar-item a:link {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.navbar-item a:visited {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.navbar-item a:hover {
+    color: #E8EDF6;
+    text-decoration: none;
+    text-shadow: 2px 2px 5px #8aa6cf;
+    font-weight: 800;
+}

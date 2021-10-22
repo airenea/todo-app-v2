@@ -1,0 +1,177 @@
+.form-title {
+    margin: auto;
+    text-align: center;
+    font-family: 'Nova Mono';
+    font-size: 4vmin;
+    margin-bottom: 1%;
+    color: #be438d;
+}
+
+.form-field {
+    text-align: center;
+    display: flex;
+    margin-bottom: 0.2%;
+    font-size: 0.9rem;
+}
+
+.form-param {
+    width: 10vw;
+    padding: 1.2%;
+    position: relative;
+    height: fit-content;
+}
+
+.form-input {
+    background-color: #ffffffe5;
+    width: 30vw;
+    padding: 0.8%;
+    position: relative;
+    height: fit-content;
+    text-align: left;
+}
+
+.form-input input {
+    background-color: #ffffffe5;
+    width: 90%;
+    padding: 0.8%;
+    position: relative;
+    height: fit-content;
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none;
+    font-family: 'Inconsolata';
+    font-size: 0.9rem;
+}
+
+.form-input select {
+    background-color: #ffffffe5;
+    position: relative;
+    height: fit-content;
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none;
+    font-family: 'Inconsolata';
+    font-size: 0.9rem;
+}
+
+.form-input-emoji select {
+    background-color: #ffffffe5;
+    width: 90%;
+    padding: 0.8%;
+    position: relative;
+    height: fit-content;
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none;
+    font-family: 'Inconsolata';
+    font-size: 0.9rem;
+}
+
+.form-input textarea {
+    max-width: 28.2vw;
+    min-width: 28.2vw;
+    min-height: 20vh;
+    max-height: 20vh;
+    resize: none;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  box-shadow: 0px;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffffe5 inset !important;
+}
+
+.form-form {
+    display: flex;
+    justify-content: center;
+}
+
+.form-remember {
+    text-align: center;
+    margin: auto;
+    margin-bottom: 0.2%;
+    font-size: 1rem;
+    color: #88347c;
+}
+
+.form-remember input {
+    margin-top: 2%;
+}
+
+.form-button-align {
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+}
+
+.form-button {
+    background-color: #372666;
+    border: none;
+    color: white;
+    padding: 2%;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Nova Mono';
+    font-size: 0.8rem;
+    width: 15vw;
+}
+
+.form-button-make {
+    background-color: #372666;
+    border: none;
+    color: white;
+    padding: 2%;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Nova Mono';
+    font-size: 0.8rem;
+    width: 15vw;
+    margin-left: 4px;
+}
+
+.form-button input[type=submit] {
+    background-color: #372666;
+    border: none;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Nova Mono';
+    font-size: 0.8rem;
+}
+
+.form-button-make a:link {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.form-button-make a:visited {
+    color: #FFFFFF;
+    text-decoration: none;
+}

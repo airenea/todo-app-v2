@@ -13,3 +13,202 @@
  *= require_tree .
  *= require_self
  */
+
+ @import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap');
+
+html {
+    background-color: #2d1a2a;
+    font-family: 'Inconsolata';
+}
+
+html::after {
+  content: "";
+  background: url("genbackground.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  opacity: 0.55;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
+.gen-container {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: #ffffffcb;
+    margin: auto;
+    width: 80vw;
+    font-family: 'Inconsolata';
+    height: 73vh;
+}
+
+.gen-container-header {
+    display: flex;
+    width: 100%;
+    background-color: #921c49c4;
+    height: 75px;
+    margin-bottom: 2%;
+    color: white;
+    justify-content: center;
+    text-align: center;
+}
+
+.gen-container-header-item {
+    width: 15%;
+    text-align: center;
+    padding: 1%;
+    font-size: 2em;
+    text-align: center;
+    display: block;
+    cursor: default;
+}
+
+.gen-container-header-activeitem {
+    width: 15%;
+    text-align: center;
+    padding: 1%;
+    font-size: 2em;
+    text-align: center;
+    display: block;
+    cursor: default;
+    background-color: #751029c4
+}
+
+.gen-container-header-item :hover {
+    background-color: #721639c4;
+    cursor: pointer;
+}
+
+.header-item-name {
+    font-size: 0.4em; 
+    margin-top: -4px;
+    text-align: center;
+}
+
+.gen-container-body {
+    padding: 1.5%;
+    padding-top: 0;
+}
+
+a:link {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #E8EDF6;
+    text-decoration: none;
+    text-shadow: 2px 2px 5px #efab9d;
+    font-weight: 800;
+}
+
+.gen-alert-notice {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: #4C1673;
+    color: #FFFFFF;
+    margin: auto;
+    width: 50vmin;
+    font-family: 'Nova Mono';
+    height: 20vmin;    
+    -moz-animation: cssAnimation 0.2s ease-in 1s forwards;
+    -webkit-animation: cssAnimation 0.2s ease-in 1s forwards;
+    -o-animation: cssAnimation 0.2s ease-in 1s forwards;
+    animation: cssAnimation 0.2s ease-in 1s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    z-index: 5;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.gen-alert-error {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: #8A1A45;
+    color: #FFFFFF;
+    margin: auto;
+    width: 50vmin;
+    font-family: 'Nova Mono';
+    height: 20vmin;    
+    -moz-animation: cssAnimation 0.2s ease-in 1s forwards;
+    -webkit-animation: cssAnimation 0.2s ease-in 1s forwards;
+    -o-animation: cssAnimation 0.2s ease-in 1s forwards;
+    animation: cssAnimation 0.2s ease-in 1s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    z-index: 5;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.form-alert-error {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: #8A1A45;
+    color: #FFFFFF;
+    margin: auto;
+    width: 50vmin;
+    font-family: 'Inconsolata';
+    height: fit-content;    
+    -moz-animation: cssAnimation 0s ease-in 3s forwards;
+    -webkit-animation: cssAnimation 0s ease-in 3s forwards;
+    -o-animation: cssAnimation 0s ease-in 3s forwards;
+    animation: cssAnimation 0s ease-in 3s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    z-index: 5;
+    font-size: 0.8rem;
+}
+
+.gen-alert-text {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin: auto;
+}
+
+@keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+    }
+}
+@-webkit-keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        visibility:hidden;
+    }
+}
