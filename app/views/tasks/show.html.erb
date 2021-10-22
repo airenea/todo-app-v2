@@ -85,7 +85,7 @@ end
     <div class="taskindiv">
     <div class="taskindiv-header">
     <div class="taskindiv-date"><%= @task.date %></div>
-    <div class="taskindiv-title"><%= check %>  <%= @task.title.downcase %></div>
+    <div class="taskindiv-title"><%= check %>  <span class="taskindiv-titletest"><%= @task.title.downcase %></span></div>
     <div class="taskindiv-category"><%= @categories.find(@task.category_id).title %> <%= @categories.find(@task.category_id).emoji %><%= @categories.find(@task.category_id).emoji %><%= @categories.find(@task.category_id).emoji %></div>
     </div>
     <div class="taskindiv-body"><%=simple_format(@task.body).html_safe %></div>
