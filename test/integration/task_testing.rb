@@ -141,10 +141,12 @@ class TaskTesting < ActionDispatch::IntegrationTest
         date: Date.current,
       } 
     }
-    @task = Task.where(body: "unique_key12345678901")[0]  
-    assert_difference("Task.count", -1) do
-      delete task_path(@task.id)
-    end
+    @task = Task.where(body: "unique_key12345678901")[0]
+    @task_count_initial = Task.count
+    delete task_path(@task.id.to_s)
+    @task_count_final = Task.count
+    @task_count_test = @task_count_initial - 1
+    assert_equal( @task_count_final, @task_count_test, "Deleted task!" )
   end
 
 end
