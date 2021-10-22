@@ -1,23 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TodoAppV2</title>
+    <title>Ready Planner One</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'header.css' %>
+    <%= stylesheet_link_tag 'navbar.css' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  
 
   <body>
-  <% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
+  <% if user_signed_in? %>
+    <nav class="navbar-gen">
+      <div class="navbar-title" style="font-size: 3.75vmin; margin-left: 1.5%;"><a href="/">ready planner one</a></div>
+        <div class="navbar-user">
+          🎮 <a href="/"><%= current_user.name %></a> | 
+          <%= link_to '🔧', edit_user_registration_path, :class => 'navbar-link' %>
+          <%= link_to '🔚', destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+        </div>
+    </nav>
+  <% else %>
+  <nav class="navbar-sign">
+  <div class="navbar-title" style="margin: auto;">ready planner one</div>
+  </nav>
+  <% end %>
+  <div class="navbar-under">.</div>
 
+  <% if notice %>
+  <div class="gen-alert-notice"><div class="gen-alert-text"><%= notice %></div></div>
+  <% end %>
+  <% if alert %>
+  <div class="gen-alert-error"><div class="gen-alert-text"><%= alert %></div></div>
+  <% end %>
     <%= yield %>
   </body>
 </html>
