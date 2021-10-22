@@ -9,7 +9,7 @@ html {
 
 html::after {
   content: "";
-  background: url("genbackground.jpeg");
+  background: url(<%= asset_path("genbackground.jpeg")%>);
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
