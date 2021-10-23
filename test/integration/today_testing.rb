@@ -25,9 +25,6 @@ class TodayTesting < ActionDispatch::IntegrationTest
             date: Date.today+2,
           } 
         }
-        @task = Task.where(body: "unique_key12345678901")[0]
-        @task_link = '/tasks/' + @task.id.to_s
-        assert_redirected_to @task_link
         follow_redirect!
         get "/tasks"
         assert_select "h2", false, "This page must contain no tasks"
