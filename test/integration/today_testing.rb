@@ -22,7 +22,7 @@ class TodayTesting < ActionDispatch::IntegrationTest
             body: "unique_key12345678901",
             completion: false,
             category_id: @cat_id,
-            date: Date.today+2,
+            date: Date.current+1,
           } 
         }
         follow_redirect!
