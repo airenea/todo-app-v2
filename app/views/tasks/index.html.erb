@@ -60,7 +60,7 @@ end
     end
   %>
     <div class="taskindex-today-task">
-    <div class="taskindex-today-taskname"><%= check %> <%= @categories.find(task.category_id).emoji %> <strong><h2><span style="color: <%=text_color%>; text-decoration: <%=text_decor%>;"><%= task.title.upcase %></span></h2></strong></div>
+    <div class="taskindex-today-taskname"><%= check %> <%= @categories.find(task.category_id).emoji %> <strong><span style="color: <%=text_color%>; text-decoration: <%=text_decor%>;"><%= task.title.upcase %></span></strong></div>
     <div class="taskindex-today-taskopt"><%= link_to '🔍', task %> <%= link_to '🖊', edit_task_path(task) %> <%= link_to '🗑', task, method: :delete, data: { confirm: 'Are you sure?' } %></div>
     </div>
   <% end %>
