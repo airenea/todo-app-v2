@@ -4,8 +4,8 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks_today = Task.where(date: Date.today).where(user: current_user.id).order("completion ASC").order("date ASC").order("category_id ASC")
-    @tasks_future = Task.where("date > ?", Date.today).where(user: current_user.id).order("completion ASC").order("date ASC").order("category_id ASC")
+    @tasks_today = Task.where(date: Date.current).where(user: current_user.id).order("completion ASC").order("date ASC").order("category_id ASC")
+    @tasks_future = Task.where("date > ?", Date.current).where(user: current_user.id).order("completion ASC").order("date ASC").order("category_id ASC")
     @categories = Category
     @tasks = Task.all.order("completion ASC").order("date ASC").order("category_id ASC")
   end
@@ -13,20 +13,20 @@ class TasksController < ApplicationController
   # GET /tasks/1 or /tasks/1.json
   def show
     @categories = Category
-    @tasks_today = Task.where(date: Date.today).where(user: current_user.id).order("completion ASC").order("date ASC").order("category_id ASC")
-    @tasks_future = Task.where("date > ?", Date.today).where(user: current_user.id).order("completion ASC").order("date ASC").order("category_id ASC")
+    @tasks_today = Task.where(date: Date.current).where(user: current_user.id).order("completion ASC").order("date ASC").order("category_id ASC")
+    @tasks_future = Task.where("date > ?", Date.current).where(user: current_user.id).order("completion ASC").order("date ASC").order("category_id ASC")
     @tasks = Task.all.order("completion ASC").order("date ASC").order("category_id ASC")
   end
 
   # GET /tasks/new
   def new
     @task = Task.new
-    @categories = Category.all.where(user: current_user.id).collect { |m| [m.title, m.id] }
+    @categories = Category.where(user: current_user.id).collect { |m| [m.title, m.id] }
   end
 
   # GET /tasks/1/edit
   def edit
-    @categories = Category.all.where(user: current_user.id).collect { |m| [m.title, m.id] }
+    @categories = Category.where(user: current_user.id).collect { |m| [m.title, m.id] }
   end
 
   # POST /tasks or /tasks.json
